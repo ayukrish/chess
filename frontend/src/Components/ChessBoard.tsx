@@ -1,14 +1,16 @@
-import { Color, PieceSymbol, Square } from "chess.js";
+import { Chess, Color, PieceSymbol, Square } from "chess.js";
 import { useState } from "react";
 
+type TBoard = ({
+  square: Square;
+  type: PieceSymbol;
+  color: Color;
+} | null)[][];
+
 const ChessBoard = ({ board, setBoard, chess } : {
-  chess: any;
-  setBoard: any;
-  board: ({
-    square: Square;
-    type: PieceSymbol;
-    color: Color;
-  } | null)[][];
+  chess: Chess;
+  setBoard:  React.Dispatch<React.SetStateAction<TBoard>>;
+  board: TBoard;
 })  => {
   const [from, setFrom] = useState<Square | null>(null);
   return (

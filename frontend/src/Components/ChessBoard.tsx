@@ -14,7 +14,7 @@ const ChessBoard = ({ board, setBoard, chess } : {
 })  => {
   const [from, setFrom] = useState<Square | null>(null);
   return (
-    <div className="flex flex-col">
+    <div>
       {board.map((row, i) => {
         return (
           <div key={i} className="flex">

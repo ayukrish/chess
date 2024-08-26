@@ -1,12 +1,12 @@
 import { GameManager } from './GameManager';
 
 export class UserManager {
-  private games: [];
   private users: WebSocket[];
+  private pendingUser: WebSocket | null;
 
   constructor() {
-    this.games = [];
     this.users = [];
+    this.pendingUser = null;
   }
 
   addUser(socket) {
@@ -19,6 +19,9 @@ export class UserManager {
   }
 
   private addGame(socket: WebSocket) {
-
+    socket.onmessage = ({ data }) => {
+      console.log(data);
+    };
+    const game  = new GameManager(socket);
   }
 }

@@ -1,5 +1,5 @@
 export class GameManager {
-  constructor() {
+  constructor(socket: WebSocket) {
 
   }
 }

@@ -12,9 +12,12 @@ const Game = () => {
     if (!socket) {
       return;
     }
-    socket.onmessage = (event) => {
-      console.log(event);
-    }
+    socket.onmessage = ({ data }) => {
+      console.log(data);
+    };
+    socket.send(JSON.stringify({
+      type: "INIT_GAME"
+    }))
 
   }, [socket]);
 

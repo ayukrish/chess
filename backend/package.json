@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon -x ts-node src/index.ts"
   },
   "author": "ayukrish",
   "license": "ISC",
   "dependencies": {
     "@types/ws": "^8.5.12",
+    "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "ws": "^8.18.0"
   }

@@ -1,13 +1,9 @@
 import  { WebSocketServer } from 'ws';
-
+import { UserManager } from './UserManager';
 const wss = new WebSocketServer({ port: 3008 });
 
-wss.on('connection', function connection(ws) {
-  ws.on('error', console.error);
-
-  ws.on('message', function message(data) {
-    console.log('received: %s', data);
-  });
-
-  ws.send('something');
+const userManager = new UserManager();
+wss.on('connection', function connection(socket) {
+  userManager.addUser(socket);
+  socket.on('disconnect', () => { userManager.removeUser(socket) })
 });

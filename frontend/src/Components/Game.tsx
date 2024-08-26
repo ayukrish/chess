@@ -9,9 +9,9 @@ const Game = () => {
       <div className="col-span-4 flex justify-center">
         <ChessBoard board={board} setBoard={setBoard} chess={chess} />
       </div>
-      <div className="col-span-2 bg-slate-900 flex flex-col justify-center w-full">
+      <div className="col-span-2 bg-slate-900 flex flex-col justify-center">
         <h1 className="py-4 text-slate-50 text-3xl">Play Chess Online</h1>
-        <button className="py-2 px-4 btn rounded bg-lime-100">Play</button>
+        <button className="py-2 px-4 btn rounded bg-lime-100 max-w-48">Play</button>
       </div>
     </div>
   )

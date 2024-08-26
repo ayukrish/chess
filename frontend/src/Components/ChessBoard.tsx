@@ -35,7 +35,7 @@ const ChessBoard = ({ board, setBoard, chess } : {
                     }
                   }}
                   key={j}
-                  className={`w-12 h-12 border ${(i+j)%2 === 0 ? "bg-slate-50" : "bg-green-500"} justify-center flex`}
+                  className={`w-16 h-16 border ${(i+j)%2 === 0 ? "bg-slate-50" : "bg-green-500"} justify-center flex`}
                 >
                   {square?.type}
                 </div>

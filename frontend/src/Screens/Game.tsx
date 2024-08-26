@@ -1,6 +1,6 @@
 import { Chess } from "chess.js";
 import { useState } from "react";
-import ChessBoard from './ChessBoard';
+import ChessBoard from '../Components/ChessBoard';
 const Game = () => {
   const [chess] = useState(new Chess());
   const [board, setBoard] = useState(chess.board());

@@ -1,4 +1,4 @@
-import Game from "./Components/Game"
+import Game from "./Screens/Game";
 function App() {
   return (
     <div className="h-screen bg-gray-900">

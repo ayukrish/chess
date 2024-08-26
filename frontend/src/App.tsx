@@ -1,7 +1,9 @@
 import Game from "./Components/Game"
 function App() {
   return (
-    <Game />
+    <div className="h-screen bg-gray-900">
+      <Game />
+    </div>
   )
 }
 

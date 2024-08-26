@@ -1,27 +1,45 @@
 import { Color, PieceSymbol, Square } from "chess.js";
+import { useState } from "react";
 
-const ChessBoard = ({ board } : {
+const ChessBoard = ({ board, setBoard, chess } : {
+  chess: any;
+  setBoard: any;
   board: ({
     square: Square;
     type: PieceSymbol;
     color: Color;
   } | null)[][];
 })  => {
-  console.log(board);
+  const [from, setFrom] = useState<Square | null>(null);
   return (
-    <div>
+    <div className="flex flex-col">
       {board.map((row, i) => {
         return (
           <div key={i} className="flex">
             {row.map((square, j) => {
+              const squareRepresentation = String.fromCharCode(97 + (j % 8)) + "" + (8 - i) as Square;
               return (
-                <div key={j} className={`w-10 h-10 border ${(i+j)%2 === 0 ? "bg-white-100" : "bg-green-500"} justify-center flex`}>
+                <div
+                  onClick={() => {
+                    if(!from) {
+                      setFrom(squareRepresentation)
+                    } else {
+                      setFrom(null);
+                      chess.move({
+                        from,
+                        to: squareRepresentation
+                      });
+                      setBoard(chess.board());
+                    }
+                  }}
+                  key={j}
+                  className={`w-12 h-12 border ${(i+j)%2 === 0 ? "bg-slate-50" : "bg-green-500"} justify-center flex`}
+                >
                   {square?.type}
                 </div>
               )})}
           </div>
-        )
-      })}
+        )})}
     </div>
   )
 }

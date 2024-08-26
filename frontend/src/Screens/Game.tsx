@@ -1,9 +1,23 @@
 import { Chess } from "chess.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChessBoard from '../Components/ChessBoard';
+import { useSocket } from "../hooks/useSocket";
+
 const Game = () => {
   const [chess] = useState(new Chess());
   const [board, setBoard] = useState(chess.board());
+  const socket = useSocket();
+
+  useEffect(() => {
+    if (!socket) {
+      return;
+    }
+    socket.onmessage = (event) => {
+      console.log(event);
+    }
+
+  }, [socket]);
+
   return (
     <div className="grid grid-cols-6 flex flex-col align-middle py-8 px-8">
       <div className="col-span-4 flex justify-center">

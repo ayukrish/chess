@@ -1,5 +1,6 @@
-import { Chess, Color, PieceSymbol, Square } from "chess.js";
+import { BLACK, Chess, Color, PieceSymbol, Square, WHITE } from "chess.js";
 import { useState } from "react";
+import { MAKE_MOVE } from "../constant";
 
 type TBoard = ({
   square: Square;
@@ -35,7 +36,7 @@ const ChessBoard = ({ board, setBoard, chess, socket } : {
                       setBoard(chess.board());
                       if(socket) {
                         socket.send(JSON.stringify({
-                          type: "MOVE_GAME",
+                          type: MAKE_MOVE,
                           move: {
                             from,
                             to: squareRepresentation
@@ -45,9 +46,14 @@ const ChessBoard = ({ board, setBoard, chess, socket } : {
                     }
                   }}
                   key={j}
-                  className={`w-16 h-16 border ${(i+j)%2 === 0 ? "bg-slate-50" : "bg-green-500"} justify-center flex`}
+                  className={`w-16 h-16 border p-2 ${(i+j)%2 === 0 ? "bg-green-200" : "bg-green-500"} justify-center flex`}
                 >
-                  {square?.type}
+                  {square && (
+                    <img
+                      src={square.color === WHITE  ? `./public/${square?.type}-${WHITE}.png` :  `./public/${square?.type}-${BLACK}.png`}
+                      alt={`${square?.type}-${square.color}`}
+                    />
+                  )}
                 </div>
               )})}
           </div>

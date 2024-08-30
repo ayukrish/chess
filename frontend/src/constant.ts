@@ -1,8 +1,3 @@
-// colors
-export const WHITE = 'w'
-export const BLACK = 'b'
-
-
 // pieces
 export const PAWN = 'p'
 export const KNIGHT = 'n'

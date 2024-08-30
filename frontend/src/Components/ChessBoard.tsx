@@ -18,7 +18,6 @@ const ChessBoard = ({ board, setBoard, chess, socket, color } : {
   color: TColor
 })  => {
   const [from, setFrom] = useState<Square | null>(null);
-  console.log(color);
   return (
     <div>
       {board.map((row, i) => {

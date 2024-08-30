@@ -7,10 +7,11 @@ type TBoard = ({
   color: Color;
 } | null)[][];
 
-const ChessBoard = ({ board, setBoard, chess } : {
+const ChessBoard = ({ board, setBoard, chess, socket } : {
   chess: Chess;
   setBoard:  React.Dispatch<React.SetStateAction<TBoard>>;
   board: TBoard;
+  socket: WebSocket | null;
 })  => {
   const [from, setFrom] = useState<Square | null>(null);
   return (
@@ -32,6 +33,15 @@ const ChessBoard = ({ board, setBoard, chess } : {
                         to: squareRepresentation
                       });
                       setBoard(chess.board());
+                      if(socket) {
+                        socket.send(JSON.stringify({
+                          type: "MOVE_GAME",
+                          move: {
+                            from,
+                            to: squareRepresentation
+                          }
+                        }))
+                      }
                     }
                   }}
                   key={j}

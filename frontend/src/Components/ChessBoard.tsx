@@ -1,6 +1,8 @@
 import { BLACK, Chess, Color, PieceSymbol, Square, WHITE } from "chess.js";
 import { useState } from "react";
 import { MAKE_MOVE } from "../constant";
+import { TColor } from '../commonInterface'
+
 
 type TBoard = ({
   square: Square;
@@ -8,13 +10,15 @@ type TBoard = ({
   color: Color;
 } | null)[][];
 
-const ChessBoard = ({ board, setBoard, chess, socket } : {
+const ChessBoard = ({ board, setBoard, chess, socket, color } : {
   chess: Chess;
   setBoard:  React.Dispatch<React.SetStateAction<TBoard>>;
   board: TBoard;
   socket: WebSocket | null;
+  color: TColor
 })  => {
   const [from, setFrom] = useState<Square | null>(null);
+  console.log(color);
   return (
     <div>
       {board.map((row, i) => {
@@ -25,9 +29,7 @@ const ChessBoard = ({ board, setBoard, chess, socket } : {
               return (
                 <div
                   onClick={() => {
-                    if(!from) {
-                      setFrom(squareRepresentation)
-                    } else {
+                    if(from) {
                       setFrom(null);
                       chess.move({
                         from,
@@ -43,6 +45,10 @@ const ChessBoard = ({ board, setBoard, chess, socket } : {
                           }
                         }))
                       }
+                    } else {
+                      if(square?.color === color) {
+                        setFrom(squareRepresentation);
+                      }
                     }
                   }}
                   key={j}
@@ -50,7 +56,7 @@ const ChessBoard = ({ board, setBoard, chess, socket } : {
                 >
                   {square && (
                     <img
-                      src={square.color === WHITE  ? `./public/${square?.type}-${WHITE}.png` :  `./public/${square?.type}-${BLACK}.png`}
+                      src={square.color === WHITE  ? `./${square?.type}-${WHITE}.png` :  `./${square?.type}-${BLACK}.png`}
                       alt={`${square?.type}-${square.color}`}
                     />
                   )}

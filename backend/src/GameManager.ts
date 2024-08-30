@@ -1,4 +1,4 @@
-import { MAKE_MOVE } from "./constant";
+import { INIT_GAME, MAKE_MOVE } from "./constant";
 
 export class GameManager {
   public player1: WebSocket;
@@ -9,6 +9,14 @@ export class GameManager {
     this.player1 = player1;
     this.player2 = player2;
     this.moveCount = 0;
+    this.player1.send(JSON.stringify({
+      type: INIT_GAME,
+      color: 'w',
+    }));
+    this.player2.send(JSON.stringify({
+      type: INIT_GAME,
+      color: 'b',
+    }));
   }
 
   makeMove(socket, move: {

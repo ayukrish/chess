@@ -10,3 +10,9 @@ export const KING = 'k'
 // socket message type
 export const INIT_GAME = 'INIT_GAME';
 export const MAKE_MOVE = 'MAKE_MOVE';
+
+
+export const COLOR_MAP = {
+  b: "Black",
+  w: "White"
+}
